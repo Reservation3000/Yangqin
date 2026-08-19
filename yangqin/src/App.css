@@ -1,0 +1,32 @@
+.yangqin-app {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;   
+    height: 100vh;  
+    background-color: rgb(0, 0, 0);
+}
+
+/* =======================================================================
+// 標題 ==================================================================
+// ======================================================================= */
+/* 大標題+小標題 */
+.header{
+	position: absolute;
+	top: 10px;
+  	left: 50px;
+}
+
+/* 標題底線 */
+.line {
+  border: none;
+  height: 1px;        /* 線的粗細 */
+  background-color: #ccc; /* 線的顏色 */
+}
+
+.yangqin {
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

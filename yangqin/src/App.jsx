@@ -8,7 +8,7 @@ const columns = [
   { id: '0', notes: ['F5', 'Eb5', 'C#5'] },
   { id: '1', notes: ['F#5', 'E5', 'D5', 'C5', 'B4', 'A4', 'G4', 'F#4', 'E4', 'D4', 'C4', 'Bb3', 'Gb3'] },
   { id: '2', notes: ['A5', 'G5', 'Bb4', 'G#4', 'F4', 'Eb4', 'C#4', 'B3', 'A3', 'G3', 'F3', 'Eb3', 'C#3'] },
-  { id: '3', notes: ['E4', 'D4', 'C4', 'Bb3', 'G#3', 'F#3', 'E3', 'D3', 'C3', 'Db3', 'G#3'] },
+  { id: '3', notes: ['E4', 'D4', 'C4', 'Bb3', 'G#3', 'F#3', 'E3', 'D3', 'C3', 'Bb2', 'G#2'] },
   { id: '4', notes: ['Bb5', 'G#5'] },
   { id: '5', notes: ['G3', 'F3', 'Eb3', 'C#3', 'B2', 'A2', 'G2', 'F2', 'Eb2', 'C#2'] }, 
   { id: '6', notes: ['C3', 'Bb2', 'G#2', 'F#2', 'E2', 'D2', 'C2', 'B1', 'A1', 'G1'] }, 
@@ -59,10 +59,10 @@ function App() {
           <YangqinMainBody column={columns[0]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="70px" top="0px" />
           <YangqinMainBody column={columns[1]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="4px" top="0px" />
           <YangqinMainBody column={columns[2]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="80px" top="0px" />
-          <YangqinMainBody column={columns[3]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="4px" top="40px" />
-          <YangqinMainBody column={columns[4]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="1px" top="0px" />
-          <YangqinMainBody column={columns[5]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="70px" top="75px" />
-          <YangqinMainBody column={columns[6]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="70px" top="80px" />
+          <YangqinMainBody column={columns[3]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="4px" top="50px" />
+          <YangqinMainBody column={columns[4]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="0px" top="0px" />
+          <YangqinMainBody column={columns[5]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="70px" top="95px" />
+          <YangqinMainBody column={columns[6]} activeNotes={activeNotes} isLoaded={isLoaded} playNote={playNote} gap="70px" top="95px" />
         </Row>
       </div>
     </main>
@@ -89,15 +89,13 @@ const YangqinMainBody = ({ column, activeNotes, isLoaded, playNote, gap, top }) 
               key={`${column.id}-${note}`}
               type={activeNotes.includes(note) ? 'primary' : 'default'}
               loading={!isLoaded}
-              // 同時支援電腦點擊與平板多點觸控
-              onClick={() => playNote(note)} 
-              onTouchStart={(e) => {
+              // 統一用 onPointerDown 處理滑鼠點擊與平板多點觸控，按下時立即觸發，放開時不會重複觸發
+              onPointerDown={(e) => {
                 e.preventDefault(); // 防止手機/平板預設的縮放或滾動
                 playNote(note);
               }}
               disabled={!isLoaded}
-              // 關鍵：禁止瀏覽器預設的觸控手勢，讓多指觸控能順利同時觸發
-              style={{ width: '100%',height: '40px  ', padding: '0px', touchAction: 'none' }} 
+              style={{ width: '100%', height: '40px', padding: '0px', touchAction: 'none' }} 
             >
               {note}
             </Button>

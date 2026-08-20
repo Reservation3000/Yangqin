@@ -1,9 +1,12 @@
 {
   "name": "yangqin",
+  "homepage": "https://reservation3000.github.io/yangqin",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+   "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -13,6 +16,7 @@
     "@tonejs/piano": "^0.2.1",
     "antd": "^6.6.1",
     "events": "^3.3.0",
+    "ghpages": "^0.0.10",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
